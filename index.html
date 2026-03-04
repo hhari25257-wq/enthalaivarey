@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login - Birthday</title>
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    /* 🌸 FLOWER BACKGROUND FIXED */
+    background-image: url("index.png.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow:hidden;
+    font-family:Arial;
+}
+
+.login-box{
+    background:rgba(0,0,0,0.5);
+    padding:40px;
+    border-radius:20px;
+    backdrop-filter:blur(8px);
+    text-align:center;
+    color:white;
+}
+
+input{
+    display:block;
+    margin:15px auto;
+    padding:10px;
+    width:200px;
+    border:none;
+    border-radius:10px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff4da6;
+    color:white;
+    cursor:pointer;
+    position:relative;
+}
+
+/* Spinner */
+.spinner{
+    border:4px solid rgba(255,255,255,0.3);
+    border-top:4px solid white;
+    border-radius:50%;
+    width:20px;
+    height:20px;
+    animation:spin 1s linear infinite;
+    margin:10px auto;
+    display:none;
+}
+
+@keyframes spin{
+    0%{ transform:rotate(0deg); }
+    100%{ transform:rotate(360deg); }
+}
+
+.falling{
+    position:absolute;
+    top:-10%;
+    font-size:24px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+<h2>LOGIN PANNUNGA THALAIVAREY ❤</h2>
+<input type="text" id="name" placeholder="your name">
+<input type="password" id="pass" placeholder="your laptop password">
+<button id="loginBtn" onclick="login()">Login</button>
+<div class="spinner" id="spinner"></div>
+</div>
+
+<script>
+function login(){
+    var name = document.getElementById("name").value;
+    var pass = document.getElementById("pass").value;
+    var btn = document.getElementById("loginBtn");
+    var spinner = document.getElementById("spinner");
+
+    if(name=="dhanalakshmi" && pass=="050304"){
+        btn.innerHTML="wait pannunga ...";
+        btn.disabled=true;
+        spinner.style.display="block";
+
+        setTimeout(function(){
+            window.location.href="wish.html";
+        },5000);
+
+    }else{
+        alert("name or password thapu thalaivarey☹️");
+    }
+}
+
+function createFalling(){
+    const symbols=["💗","🦋"];
+    let item=document.createElement("div");
+    item.className="falling";
+    item.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+    item.style.left=Math.random()*100+"vw";
+    item.style.animationDuration=(3+Math.random()*5)+"s";
+    document.body.appendChild(item);
+    setTimeout(()=>{item.remove()},8000);
+}
+setInterval(createFalling,500);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>post from Thalaivar</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(to right,#87CEEB,#4682B4);
+  overflow:hidden;
+  font-family:Arial;
+  position:relative;
+}
+
+/* Back Button */
+.back-btn{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:8px 20px;
+  background:rgba(0, 30, 255, 0.812);
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  display:none;
+  z-index:1000;
+}
+
+/* Postman */
+.postman{
+  position:absolute;
+  bottom:60px;
+  left:-350px;
+  width:280px;
+  animation:moveIn 4s forwards;
+  z-index:500;
+}
+
+@keyframes moveIn{
+  from{ left:-350px; }
+  to{ left:40%; }
+}
+
+@keyframes moveOut{
+  from{ left:40%; }
+  to{ left:110%; }
+}
+
+/* Dialogue Box */
+.dialogue{
+  position:absolute;
+  top:30%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:white;
+  padding:20px 40px;
+  border-radius:15px;
+  display:none;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  z-index:1000;
+}
+
+/* Envelope */
+.envelope{
+  position:absolute;
+  top:45%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:80px;
+  display:none;
+  cursor:pointer;
+  z-index:1000;
+}
+
+/* Message Box */
+.message{
+  position:absolute;
+  top:45%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:white;
+  padding:50px 70px;        
+  border-radius:25px;       
+  width:80%;                
+  display:none;
+  box-shadow:0 10px 40px rgba(0,0,0,0.3);
+  z-index:1000;
+  font-size:24px;           
+  text-align:center;        
+  white-space:pre;   /* Only \n works */
+  overflow-x:auto;   /* Prevent automatic word wrap */
+}
+
+/* Input & Button */
+input{
+  padding:6px;
+  margin-top:10px;
+  width:80%;
+}
+
+button{
+  margin-top:10px;
+  padding:6px 15px;
+  border:none;
+  background:#1900ff;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* 🔥 EMOJI BACKGROUND LAYER */
+#emojiContainer{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;   /* Background layer */
+}
+
+/* Falling Emoji */
+.emoji{
+  position:absolute;
+  pointer-events:none;
+  z-index:1;   /* Stay in background */
+}
+
+/* Foreground Elements Above Emojis */
+.postman{
+  z-index:500;
+}
+
+.dialogue,
+.envelope,
+.message,
+.back-btn{
+  z-index:1000;
+}
+</style>
+</head>
+
+<body>
+
+<img src="postman.gif" class="postman" id="postman">
+
+<div class="dialogue" id="dialogueBox">
+  <h3>madam Ungalukku post vandhirukku📬</h3>
+  <button onclick="askSignature()">Receive 💌</button>
+</div>
+
+<div class="dialogue" id="signatureBox">
+  <h3>Unga Signature podunga ✍️</h3>
+  <input type="password" id="passwordInput" placeholder="your name"><br>
+  <button onclick="confirmSignature()">Submit</button>
+</div>
+
+<div class="envelope" id="envelope">📬</div>
+
+<div class="message" id="messageBox">
+  <span id="typedText"></span>
+</div>
+
+<button class="back-btn" id="backBtn" onclick="goBack()">⬅ Back</button>
+
+<div id="emojiContainer"></div>
+
+<script>
+let postman = document.getElementById("postman");
+let dialogue = document.getElementById("dialogueBox");
+let signatureBox = document.getElementById("signatureBox");
+let envelope = document.getElementById("envelope");
+let messageBox = document.getElementById("messageBox");
+let typedText = document.getElementById("typedText");
+let backBtn = document.getElementById("backBtn");
+
+let finalMessage = `💙na as usual call ilana message panni wish pannalunu tha eruthan thalaivare seri konjam puthusa\ntry pannalame nu vanthathu than intha idea nalla eruthuchuna ok but nalla ilana enna thita vendam.\nNamma friends ah pazhaguna natkal vena kami ahh irukalam ana antha konjam natkalayum evolo emotion🥹\n evolo funny ahh na moments 😂evolo enjoyment☺️ pannierukom la namma yappoyavathu tha namma \nmeet pandrom epoyum enga iruthu vittom anga eruthey pesura bond la yaru kadaikum sollunga pakalam✨.\nna evolo pera ahh enna enna ennamo solli kuputu erukan ana ithu varaikom naa thalaivaru nu \nsolli kuptathu ungala mattum tha thalaivarey.na nenaichi kuda pakala namma evolo close friends ahh \naguvom nu ana onu soldra oru nalla friend ahh kandipa unga kudaa naa yappayume erupan suma soldra \nnenaikathinga kandipa erupan🫂✨na thalaivaru nu kupdurathu ku deserve ahna oruthar na atha nega tha \nthalaivare💯 enna poruthavara nega en kitta pesunalum seri pesama eruthalum seri namma meet pannalum \nseri meet pannama eruthalum seri nega tha en thalaivar ithu nega nu ila yaru nenaichalum matha mudiyathu.\nkonja nall munadi onu ketu eruthinga unga kitta enna ku enna pudikum nu kuda erukuravangalum nalla \nerukunu nu nenaikura antha manasu tha thalaivarey unga kitta ennaku pudichathu nalla manasu eruthaley \npothu thalaivare avanga avanga friends ku avanga avanga thalaivar tha athu marri enna ku kadacha thalaivar \nnega tha enga eruthalum epoyum happy ahh eru nga thalaivare \nno one can replaced your place and you will always be special in my heart keep smile in your face.\nEn thalaivarey @dhana💗🦋`;
+
+postman.addEventListener("animationend", function(e){
+  if(e.animationName === "moveIn"){
+    dialogue.style.display="block";
+  }
+});
+
+function askSignature(){
+  dialogue.style.display="none";
+  signatureBox.style.display="block";
+}
+
+function confirmSignature(){
+  let pass = document.getElementById("passwordInput").value;
+  if(pass !== "dhanalakshmi"){
+    alert("thapu thalaivarey☹️");
+    return;
+  }
+  signatureBox.style.display="none";
+  postman.style.animation="moveOut 4s forwards";
+
+  postman.addEventListener("animationend", function(e){
+    if(e.animationName === "moveOut"){
+      envelope.style.display="block";
+    }
+  });
+}
+
+/* TYPEWRITER */
+function typeWriter(){
+  let i = 0;
+  typedText.innerHTML = "";
+
+  function typing(){
+    if(i < finalMessage.length){
+      typedText.innerHTML += finalMessage[i];
+      i++;
+      setTimeout(typing, 40);
+    } else {
+      backBtn.style.display="block";
+    }
+  }
+  typing();
+}
+
+/* EMOJI RAIN */
+function createFallingEmoji(){
+  let emojis = ["✨","💗","🦋"];
+  let emoji = document.createElement("div");
+  emoji.classList.add("emoji");
+  emoji.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+
+  emoji.style.top = "-50px";
+  emoji.style.left = Math.random() * window.innerWidth + "px";
+  emoji.style.fontSize = (20 + Math.random()*25) + "px";
+  document.getElementById("emojiContainer").appendChild(emoji);
+
+  let fallSpeed = 2 + Math.random()*3;
+
+  function fall(){
+    let top = parseFloat(emoji.style.top);
+    emoji.style.top = top + fallSpeed + "px";
+
+    if(top < window.innerHeight){
+      requestAnimationFrame(fall);
+    } else {
+      emoji.remove();
+    }
+  }
+  fall();
+}
+
+let emojiInterval;
+
+function startEmojiRain(){
+  if(!emojiInterval){
+    emojiInterval = setInterval(createFallingEmoji, 150);
+  }
+}
+
+function goBack(){
+  clearInterval(emojiInterval);
+  window.location.href = "index.html";
+}
+
+envelope.onclick = function(){
+  envelope.style.display="none";
+  messageBox.style.display="block";
+  typeWriter();
+  startEmojiRain();
+};
+</script>
+
+</body>
+</html>
